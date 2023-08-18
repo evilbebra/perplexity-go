@@ -1,4 +1,4 @@
-package main
+package perplexity
 
 import (
 	"fmt"
@@ -51,40 +51,4 @@ func initConnection(s *internal.Session) bool {
 		return false
 	}
 	return true
-}
-
-func main() {
-	resp, err := NewQuestion("How old is Golang?")
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-	} else {
-		fmt.Printf("Your uuid: %s\n", resp.Response.UUID)
-		fmt.Printf("Text of your question was: %s\n", resp.Response.QueryStr)
-
-		for i, query := range resp.Response.RelatedQueries {
-			fmt.Printf("Related Query %d: %s\n", i, query)
-		}
-		fmt.Printf("SearchFocus: %s\n", resp.Response.SearchFocus)
-		fmt.Printf("Mode: %s\n", resp.Response.Mode)
-		fmt.Printf("Mode: %v\n", resp.Response.Gpt4)
-		fmt.Printf("Web Result for query: %s\n", resp.Answer.ExtraWebResults)
-		fmt.Printf("Answer: %s\n", resp.Answer.Text)
-	}
-
-	resp, err = NewQuestion("What is UDP?")
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-	} else {
-		fmt.Printf("Your uuid: %s\n", resp.Response.UUID)
-		fmt.Printf("Text of your question was: %s\n", resp.Response.QueryStr)
-
-		for i, query := range resp.Response.RelatedQueries {
-			fmt.Printf("Related Query %d: %s\n", i, query)
-		}
-		fmt.Printf("SearchFocus: %s\n", resp.Response.SearchFocus)
-		fmt.Printf("Mode: %s\n", resp.Response.Mode)
-		fmt.Printf("Web Result for query: %s\n", resp.Answer.ExtraWebResults)
-		fmt.Printf("Answer: %s\n", resp.Answer.Text)
-	}
-
 }
